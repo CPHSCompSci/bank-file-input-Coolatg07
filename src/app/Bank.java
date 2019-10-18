@@ -1,5 +1,6 @@
 package app;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class Bank {
@@ -17,7 +18,7 @@ public class Bank {
 	public Bank(String name) {
 		this.name = name;
 		accounts = new ArrayList<>();
-		log("Bank Created");
+		log("Ba nk Created");
 	}
 
 	public int createAccount(String name) {
@@ -75,14 +76,27 @@ public class Bank {
 		return account.balance;
 	}
 
-	public void saveAccounts(String filename) {
-		// TODO
-		log("Save not yet implemented.");
+	public void saveAccounts() {
+		try {
+			accounts.toString();
+			FileWriter saves = new FileWriter("Accounts.txt");
+			for(Account a : accounts)
+			{
+			saves.append(a.toString()+"\n");
+			
+			System.out.println("Account saved in Accounts.txt");
+			}
+			saves.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//log("Save not yet implemented.");
 	}
 
 	public void loadAccounts(String filename) {
 		// TODO
-		log("Load not yet implemented.");
+		//log("Load not yet implemented.");
 	}
 
 	private Account findAccount(int accountNumber) {
